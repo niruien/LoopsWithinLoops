@@ -11,7 +11,7 @@ import rosegraphics as rg
 
 def main():
     """ Calls the other functions to demonstrate them. """
-    run_test_draw_L()
+    #run_test_draw_L()
     run_test_draw_wall_on_right()
 
 
@@ -80,9 +80,40 @@ def draw_L(window, circle, r, c):
     and m and n are small, positive integers.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
+    original_x = circle.center.x
+    original_y = circle.center.y
+    radius = circle.radius
+
+    x = original_x
+    y = original_y
+
+    for k in range(r):
+        for j in range(3):
+            new_circle = rg.Circle(rg.Point(x, y), radius)
+            new_circle.attach_to(window)
+            new_circle.fill_color = circle.fill_color
+            window.render(0.1)
+            x = x + (2 * radius)
+        y = y + 2 * radius
+        x = original_x
+
+    for k in range(3):
+        for j in range(3+c):
+            new_circle = rg.Circle(rg.Point(x, y), radius)
+            new_circle.attach_to(window)
+            new_circle.fill_color = circle.fill_color
+            window.render(0.1)
+            x = x + (2 * radius)
+        y = y + 2 * radius
+        x = original_x
+
+
+
+
+
 
 
 def run_test_draw_wall_on_right():
@@ -121,10 +152,29 @@ def draw_wall_on_right(rectangle, n, window):
     and n is a small, positive integer.
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
+    original_c1 = rectangle.get_upper_right_corner()
+    original_c2 = rectangle.get_lower_left_corner()
+    width = rectangle.get_width()
+    height = rectangle.get_height()
+    c1 = original_c1
+    c2 = original_c2
 
+    for k in range(n):
+        for j in range(k + 1):
+            new_rectangle = rg.Rectangle(c1, c2)
+            new_rectangle.attach_to(window)
+            window.render(0.1)
+
+            c1.x = c1.x - width
+            c2.x = c2.x - width
+
+        c1.y = c1.y + height
+        c2.y = c2.y + height
+        c1.x = rectangle.get_upper_right_corner().x
+        c2.x = rectangle.get_lower_left_corner().x
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
