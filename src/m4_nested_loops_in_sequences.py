@@ -313,7 +313,7 @@ def print_characters_slanted(sequence_of_strings):
     for k in range(len(sequence_of_strings)):
         for j in range(len(sequence_of_strings[k])):
             st = sequence_of_strings[k]
-            print('{:3d}'.format(st[j]))
+            print(j*' ', st[j])
 
 
 # ----------------------------------------------------------------------
